@@ -8,9 +8,9 @@ gem 'origen_debuggers'
 
 gem 'origen_doc_helpers'
 
-gem 'byebug'
+gem 'cross_origen', '=0.6.1'
 
-gem 'origen_updater'
+gem 'byebug'
 
 gem 'nokogiri' , '1.7.2'
 # Uncomment these if you want to use a visual debugger (e.g. Visual Studio Code) to debug your app
