@@ -2,6 +2,7 @@
 module NVM
   class NVM_M682
     include Origen::Model
+    include CrossOrigen
 
     def initialize(options={})
       case version

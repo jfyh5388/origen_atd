@@ -1,6 +1,7 @@
 module NVM
   class ANALOG_T921
     include Origen::Model
+    include CrossOrigen
 
     bug :low_vref, :affected_version => 11
     bug :low_iref, :affected_versions => [11, 12]

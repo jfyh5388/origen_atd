@@ -1,6 +1,7 @@
 module ATDTest
   class Falcon
     include Origen::TopLevel
+    include CrossOrigen
 
     def initialize(options = {})
       instantiate_pins(options)
@@ -21,6 +22,14 @@ module ATDTest
     end
 
     def instantiate_sub_blocks(options = {})
+      case version
+      when 0
+        sub_block :nvm, class_name: "NVM::NVM_M682", version: 3
+      when 1
+        sub_block :nvm, class_name: "NVM::NVM_M682", version: 5
+      else
+        fail "The BOM for version #{version} has not been defined!"
+      end
       sub_block :atd, instances: 2, class_name: 'ATD',
 	  base_address: [0x1000_0000, 0x1000_1000]
     end
