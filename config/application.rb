@@ -99,14 +99,14 @@ class ATDTestApplication < Origen::Application
   #config.pattern_name_translator do |name|
   #  name.gsub(/_b\d/, "_bx")
   #end
+  #def before_pattern_lookup(requested_pattern)
+  #  ATDTest::PatternDispatcher.new.dispatch_or_return(requested_pattern)
+  #end
 
   def after_web_site_compile(options)
-  # Build the model documentation
-  OrigenDocHelpers.generate_model_docs layout: "#{Origen.root}/templates/web/layouts/_basic.html.erb", tab: :model do |d|
-    d.page model: $dut
+    # Build the model documentation
+    OrigenDocHelpers.generate_model_docs layout: "#{Origen.root}/templates/web/layouts/_basic.html.erb", tab: :model do |d|
+      d.page model: $dut
     end
-
   end 
-
-
 end

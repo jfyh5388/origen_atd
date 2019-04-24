@@ -32,6 +32,18 @@ module ATDTest
       end
       sub_block :atd, instances: 2, class_name: 'ATD',
 	  base_address: [0x1000_0000, 0x1000_1000]
+
+      mem_aps = { ahbap: 0x0000_0000 }
+      std_memap_config = { latency: 24, apreg_access_wait: 20, apmem_access_wait: 20, csw_reset: 0x23000040 }
+      mem_aps = {
+        ahbap:  { base_address: 0x00000000 }.merge(std_memap_config)
+      }
+      aps = {
+        mdmap:  { class_name: 'ARMDebugNXP::MDMAP', base_address: 0x0100_0000, apreg_access_wait: 8 }
+      }
+      sub_block :arm_debug, class_name: 'OrigenARMDebug::DAP', base_address: 0, mem_aps: mem_aps, aps: aps
+      arm_debug.mdmap.add_reg(:testmode, 0x8, 32)
+
     end
   end
 end
